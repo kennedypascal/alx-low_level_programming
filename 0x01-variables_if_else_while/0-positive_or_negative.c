@@ -3,15 +3,13 @@
 #include <time.h>
 
 /**
- * Main - Determine if number is positive or negative
+ * main - Determine if number is positive or negative
  *
- * Description: program will assign a random number to a the
- * variable n each time it is executed.
+ * Description: 'program will assign a random number to a the
+ * variable n each time it is executed.'
  *
  * Return: Always 0 (Success)
  */
-
-/* betty style doc for function main goes there*/
 int main(void)
 {
 	int n;
