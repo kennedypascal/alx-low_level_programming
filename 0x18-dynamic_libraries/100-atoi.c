@@ -1,35 +1,39 @@
 #include "main.h"
 
 /**
- * _atoi - converts a string to an integer.
- * @s: params
- * Return: something
+ * _atoi - Convert a string to integer.
+ * @s: char array string
+ * Description: Number in the string can be preceded by an infinite
+ * number of characters.
+ * You need to take into account all -/+ signs before the number.
+ * If there are no numbers in the string, return 0.
+ * No need to check for overflow.
+ * Not allowed to hard-code special values.
+ * Return: first integer found in string
  */
 int _atoi(char *s)
 {
-	unsigned int count = 0, size = 0, j = 0, k = 1, m = 1, i;
+	int i;
+	int h, p;
 
-	while (*(s + count) != '\0')
+	h = 0;
+	p = -1;
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (size > 0 && (*(s + count) < '0' || *(s + count) > '9'))
-			break;
+		if (s[i] == '-')
+			p *= -1;
 
-		if (*(s + count) == '-')
-			k *= -1;
-
-		if ((*(s + count) >= '0') && (*(s + count) <= '9'))
+		if (s[i] > 47 && s[i] < 58)
 		{
-			if (size > 0)
-				m *= 10;
-			size++;
+			if (h < 0)
+				h = (h * 10) - (s[i] - '0');
+			else
+				h = (s[i] - '0') * -1;
+			if (s[i + 1] < 48 || s[i + 1] > 57)
+				break;
 		}
-		count++;
 	}
-
-	for (i = count - size; i < count; i++)
-	{
-		j = j + ((*(s + i) - 48) * m);
-		m /= 10;
-	}
-	return (j * k);
+	if (p < 0)
+		h *= -1;
+	return (h);
 }
